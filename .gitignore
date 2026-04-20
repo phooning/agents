@@ -1,0 +1,70 @@
+# ===========================
+# uv & Python Ecosystem
+# ===========================
+# Standard Python build & cache artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+dist/
+build/
+*.egg-info/
+*.egg
+.eggs/
+
+# Virtual environments (uv's default is .venv)
+.venv/
+venv/
+env/
+
+# ===========================
+# AI Agent & LLM Specific
+# ===========================
+# Prompt outputs, generations & response caches (to save API costs)
+prompts/outputs/
+llm_cache/
+.llm_cache/
+generated/
+temp_outputs/
+api_responses.json
+
+# Logs & debugging traces
+logs/
+*.log
+traces/
+
+# Secrets & local config (NEVER commit these)
+.env
+.env.*
+secrets/
+config.local.yaml
+config.json
+*.pem
+*.key
+api_keys.yaml
+
+# ===========================
+# CLI & Development
+# ===========================
+# CLI state, caches & temporary files
+.cli_cache/
+.state/
+state.json
+cli_outputs/
+
+# Testing & coverage reports
+coverage/
+.coverage
+htmlcov/
+.pytest_cache/
+pytest_cache/
+
+# ===========================
+# IDE & OS
+# ===========================
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+.DS_Store
+Thumbs.db

@@ -1,0 +1,14 @@
+[project]
+name = "agent"
+version = "0.1.0"
+description = "Local multi-agent pipeline for software engineering."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "crewai",
+  "langchain-openai",
+  "pydantic",
+]
+
+[project.scripts]
+agent = "main:main"
