@@ -271,9 +271,7 @@ def _run_delta_repeat(
     )
 
 
-def run_tauri_task_crew(
-    task_description: str, target_file: str, max_iterations: int = 2
-):
+def run_task_crew(task_description: str, target_file: str, max_iterations: int = 2):
     max_iterations = max(1, max_iterations)
     result = _run_initial_loop(task_description, target_file, max_iterations)
 

@@ -3,7 +3,7 @@ from crewai import Agent, Crew, Process, Task
 from ..utils.llm import get_llm
 
 
-def run_tauri_implement_crew(task_description: str, file: str):
+def run_implement_crew(task_description: str, file: str):
     llm = get_llm(temperature=0.3)
 
     analyst = Agent(

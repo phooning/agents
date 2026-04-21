@@ -78,7 +78,7 @@ agents -f src/components/Button.tsx --write refactor "Make this component access
 
 ## Roadmap
 
-- Create generic use cases following [](https://github.com/garrytan/gstack/tree/main).
+- Create generic use cases following https://github.com/garrytan/gstack/tree/main.
 
 ## Contributing
 

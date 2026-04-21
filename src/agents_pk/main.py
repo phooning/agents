@@ -2,11 +2,11 @@
 import argparse
 from pathlib import Path
 
-from .operations.implement import run_tauri_implement_crew
-from .operations.refactor import run_tauri_refactor_crew
-from .operations.review import run_tauri_review_crew
-from .operations.strategize import run_tauri_strategize_crew
-from .operations.task import run_tauri_task_crew
+from .operations.implement import run_implement_crew
+from .operations.refactor import run_refactor_crew
+from .operations.review import run_review_crew
+from .operations.strategize import run_strategize_crew
+from .operations.task import run_task_crew
 from .utils.constants import MODEL
 
 # Configuration via Environment Variables with sensible defaults
@@ -62,20 +62,20 @@ def main():
 
     args = parser.parse_args()
 
-    crew_fns = {
-        "refactor": run_tauri_refactor_crew,
-        "implement": run_tauri_implement_crew,
-        "review": run_tauri_review_crew,
-        "strategize": run_tauri_strategize_crew,
-        "task": run_tauri_task_crew,
-    }
-    crew_fn = crew_fns[args.command]
-
     print(f"🚀 Running {args.command} using model: {MODEL}")
-    if args.command == "task":
-        result = crew_fn(args.task, args.file, args.max_iterations)
-    else:
-        result = crew_fn(args.task, args.file)
+    match args.command:
+        case "refactor":
+            result = run_refactor_crew(args.task, args.file)
+        case "implement":
+            result = run_implement_crew(args.task, args.file)
+        case "review":
+            result = run_review_crew(args.task, args.file)
+        case "strategize":
+            result = run_strategize_crew(args.task, args.file)
+        case "task":
+            result = run_task_crew(args.task, args.file, args.max_iterations)
+        case _:
+            parser.error(f"Unknown command: {args.command}")
     print("\n" + "=" * 90 + "\n" + str(result))
 
     if args.write:
