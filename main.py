@@ -6,6 +6,7 @@ from agents.implement import run_tauri_implement_crew
 from agents.refactor import run_tauri_refactor_crew
 from agents.review import run_tauri_review_crew
 from agents.strategize import run_tauri_strategize_crew
+from agents.task import run_tauri_task_crew
 from utils.constants import MODEL
 
 # Configuration via Environment Variables with sensible defaults
@@ -20,6 +21,12 @@ def main():
         "--write",
         action="store_true",
         help="Overwrite file with reviewed code (creates .bak)",
+    )
+    parser.add_argument(
+        "--max-iterations",
+        type=int,
+        default=2,
+        help="Maximum Delta/Optimizer/Reviewer 2 loop iterations for task command",
     )
 
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -45,6 +52,11 @@ def main():
         "task", nargs="?", default="Create a safe implementation strategy"
     )
 
+    task_p = subparsers.add_parser(
+        "task", help="Run strategy, implementation, review, delta, and optimization loop"
+    )
+    task_p.add_argument("task", nargs="?", default="Implement the feature through review")
+
     args = parser.parse_args()
 
     crew_fns = {
@@ -52,11 +64,15 @@ def main():
         "implement": run_tauri_implement_crew,
         "review": run_tauri_review_crew,
         "strategize": run_tauri_strategize_crew,
+        "task": run_tauri_task_crew,
     }
     crew_fn = crew_fns[args.command]
 
     print(f"🚀 Running {args.command} using model: {MODEL}")
-    result = crew_fn(args.task, args.file)
+    if args.command == "task":
+        result = crew_fn(args.task, args.file, args.max_iterations)
+    else:
+        result = crew_fn(args.task, args.file)
     print("\n" + "=" * 90 + "\n" + str(result))
 
     if args.write:
