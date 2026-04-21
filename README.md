@@ -1,6 +1,6 @@
 # Agents
 
-A generic multi-agent pipeline designed to execute specific engineering tasks.
+A generic looped or single-shot multi-agent pipeline designed to execute engineering tasks.
 
 ## Features
 
@@ -17,14 +17,14 @@ Each task has a chain of four agents. Optimized for local LLMs (Ollama, llama.cp
 
 Even with frontier models (e.g. ChatGPT 5.4 Extra High, Gemini Pro, Grok Heavy), LLM output on complex tasks is never 100% correct. By rotating through layers of agents:
 
-- Strategize: blueprint the feature.
+- Strategize: blueprint the feature with a structured spec (JSON with acceptance criteria, edge cases, non-goals).
 - Task: implement the feature.
 - Reviewer 1: Review the implementation.
 - Delta: Retrieve the delta between the review and the initial strategy blueprint; formulate a plan to fix the delta through tests - delineate "PASS", "PARTIAL", or "FAIL" conditions.
 - Optimizer: Close the delta between the implementation and the issues from plan.
 - Reviewer 2: Review the optimization. If it doesn't fufill initial strategy with each feature with "PASS", repeat from delta.
 
-I found this ensures a tight workflow loop that closes massive amounts of issues under the least amount of effort. Finally, a human will review and check off the final diff.
+I found this ensures a tight workflow loop that closes massive amounts of issues under the least amount of effort. Finally, a human will review and check off the final diff. `--max-iterations` can be appended to get a human reviewer in the loop.
 
 ## Installation
 
