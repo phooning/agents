@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import argparse
+from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
+import tomllib
 
 from .operations.implement import run_implement_crew
 from .operations.refactor import run_refactor_crew
@@ -12,9 +14,29 @@ from .utils.constants import MODEL
 # Configuration via Environment Variables with sensible defaults
 
 
+def get_package_version() -> str:
+    pyproject_path = Path(__file__).resolve().parents[2] / "pyproject.toml"
+    if pyproject_path.exists():
+        with pyproject_path.open("rb") as pyproject_file:
+            pyproject = tomllib.load(pyproject_file)
+        project_version = pyproject.get("project", {}).get("version")
+        if isinstance(project_version, str):
+            return project_version
+
+    try:
+        return version("agents")
+    except PackageNotFoundError:
+        return "unknown"
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Tauri-Agent: Multi-agent pipeline for Tauri apps"
+    )
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"%(prog)s {get_package_version()}",
     )
     parser.add_argument("--file", "-f", required=True, help="Target file path")
     parser.add_argument(
