@@ -51,27 +51,34 @@ Agents uses environment variables for easy configuration. You can export these i
 
 ## Usage
 
-Run the agent via `uv run`:
+Run the agent via `uv run`. The recommended way is to install it onto your path:
+
+```sh
+uv build
+uv tool install --force --editable .
+```
+
+The tool should be available via `agents`.
 
 ### Refactor Code
 ```bash
-uv run agent -f src-tauri/src/main.rs refactor "Optimize error handling in the database module"
+agents -f src-tauri/src/main.rs refactor "Optimize error handling in the database module"
 ```
 
 ### Implement a Feature
 ```bash
-uv run agent -f src/App.tsx implement "Add a dark mode toggle that persists in Tauri store"
+agents -f src/App.tsx implement "Add a dark mode toggle that persists in Tauri store"
 ```
 
 ### Auto-Write Changes
 Add the `--write` flag to automatically apply the AI's reviewed code to your file.
 ```bash
-uv run agent -f src/components/Button.tsx --write refactor "Make this component accessible (ARIA)"
+agents -f src/components/Button.tsx --write refactor "Make this component accessible (ARIA)"
 ```
 
 ## Roadmap
 
-- Create generic use cases following https://github.com/garrytan/gstack/tree/main.
+- Create generic use cases following [](https://github.com/garrytan/gstack/tree/main).
 
 ## Contributing
 

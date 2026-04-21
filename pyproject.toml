@@ -11,4 +11,4 @@ dependencies = [
 ]
 
 [project.scripts]
-agents = "main:main"
+agents = "agents_pk.main:main"

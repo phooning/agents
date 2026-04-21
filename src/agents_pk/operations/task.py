@@ -2,7 +2,7 @@ import re
 
 from crewai import Agent, Crew, Process, Task
 
-from utils.llm import get_llm
+from ..utils.llm import get_llm
 
 SPEC_SCHEMA = """
 {

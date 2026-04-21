@@ -2,12 +2,12 @@
 import argparse
 from pathlib import Path
 
-from agents.implement import run_tauri_implement_crew
-from agents.refactor import run_tauri_refactor_crew
-from agents.review import run_tauri_review_crew
-from agents.strategize import run_tauri_strategize_crew
-from agents.task import run_tauri_task_crew
-from utils.constants import MODEL
+from .operations.implement import run_tauri_implement_crew
+from .operations.refactor import run_tauri_refactor_crew
+from .operations.review import run_tauri_review_crew
+from .operations.strategize import run_tauri_strategize_crew
+from .operations.task import run_tauri_task_crew
+from .utils.constants import MODEL
 
 # Configuration via Environment Variables with sensible defaults
 
@@ -53,9 +53,12 @@ def main():
     )
 
     task_p = subparsers.add_parser(
-        "task", help="Run strategy, implementation, review, delta, and optimization loop"
+        "task",
+        help="Run strategy, implementation, review, delta, and optimization loop",
     )
-    task_p.add_argument("task", nargs="?", default="Implement the feature through review")
+    task_p.add_argument(
+        "task", nargs="?", default="Implement the feature through review"
+    )
 
     args = parser.parse_args()
 

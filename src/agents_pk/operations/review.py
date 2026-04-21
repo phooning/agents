@@ -1,6 +1,6 @@
 from crewai import Agent, Crew, Process, Task
 
-from utils.llm import get_llm
+from ..utils.llm import get_llm
 
 
 def run_tauri_review_crew(task_description: str, target_file: str):
