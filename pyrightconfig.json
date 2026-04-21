@@ -1,0 +1,7 @@
+{
+  "include": ["."],
+  "exclude": [".venv", "build", "agent.egg-info"],
+  "venvPath": ".",
+  "venv": ".venv",
+  "pythonVersion": "3.12"
+}

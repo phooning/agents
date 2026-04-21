@@ -1,5 +1,5 @@
 [project]
-name = "agent"
+name = "agents"
 version = "0.1.0"
 description = "Local multi-agent pipeline for software engineering."
 readme = "README.md"
@@ -11,4 +11,4 @@ dependencies = [
 ]
 
 [project.scripts]
-agent = "main:main"
+agents = "main:main"
