@@ -68,3 +68,4 @@ pytest_cache/
 *.swn
 .DS_Store
 Thumbs.db
+.aider*

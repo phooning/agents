@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import argparse
+import tomllib
 from collections.abc import Mapping
 from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
-import tomllib
 from typing import cast
 
 from .operations.implement import run_implement_crew
@@ -12,8 +12,6 @@ from .operations.review import run_review_crew
 from .operations.strategize import run_strategize_crew
 from .operations.task import run_task_crew
 from .utils.constants import MODEL
-
-# Configuration via Environment Variables with sensible defaults
 
 
 class CliArgs(argparse.Namespace):

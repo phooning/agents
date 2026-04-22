@@ -46,8 +46,8 @@ Agents uses environment variables for easy configuration. You can export these i
 | Variable | Description | Default |
 | :--- | :--- | :--- |
 | `AGENT_BASE_URL` | OpenAI-compatible API endpoint | `http://localhost:11434/v1` |
-| `AGENT_MODEL` | The LLM model name | `qwen2.5-coder:32b` |
-| `AGENT_API_KEY` | API Key (if using a remote provider) | `no-key-required` |
+| `AGENT_MODEL` | The LLM model name | `Qwen3.6-35B-A3B` |
+| `AGENT_API_KEY` | API key, if the endpoint requires one | `no-key-required` |
 
 ## Usage
 
@@ -75,6 +75,15 @@ Add the `--write` flag to automatically apply the AI's reviewed code to your fil
 ```bash
 agents -f src/components/Button.tsx --write refactor "Make this component accessible (ARIA)"
 ```
+
+### llama.cpp Review Smoke Test
+Use the smoke script to verify that the review CLI path can talk to a live OpenAI-compatible llama.cpp server and produce any output against `artifacts/options.js`.
+
+```bash
+scripts/review_llamacpp_smoke.sh
+```
+
+By default, it targets the server at `http://192.168.88.218:8337`, passes `http://192.168.88.218:8337/v1` to the CLI, uses model `Qwen3.6-35B-A3B-UD-Q4_K_S.gguf`, and key `sk-1234`. Override those with `AGENT_BASE_URL`, `AGENT_MODEL`, or `AGENT_API_KEY` when needed.
 
 ## Roadmap
 
