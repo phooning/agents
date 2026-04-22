@@ -83,7 +83,7 @@ Use the smoke script to verify that the review CLI path can talk to a live OpenA
 scripts/review_llamacpp_smoke.sh
 ```
 
-By default, it targets the server at `http://192.168.88.218:8337`, passes `http://192.168.88.218:8337/v1` to the CLI, uses model `Qwen3.6-35B-A3B-UD-Q4_K_S.gguf`, and key `sk-1234`. Override those with `AGENT_BASE_URL`, `AGENT_MODEL`, or `AGENT_API_KEY` when needed.
+Set environment variables with `AGENT_BASE_URL`, `AGENT_MODEL`, or `AGENT_API_KEY`.
 
 ## Roadmap
 
